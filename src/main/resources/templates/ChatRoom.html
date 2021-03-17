@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>P城四少的新天地</title>
+    <link rel="stylesheet" th:href="@{/css/chat.css}">
+</head>
+<body>
+<input id="userShowName" type="hidden" th:value="${userShowName}">
+<div class="chat-container">
+    <div class="left">
+        <!--标题-->
+        <div class="title">哲学♂聊天</div>
+        <!--消息容器-->
+        <div id="message" class="msg-box"></div>
+        <!--发送消息容器-->
+        <div class="msg-input">
+            <textarea id="userMessage" type="text" class="msg-input-text"></textarea>
+            <div id="submitMsg" class="msg-input-send"><a href="javascript:void(0)">发送消息</a></div>
+        </div>
+    </div>
+    <!--当前在线人-->
+    <div id="now_online_per" class="right"></div>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/plus/jquery-3.4.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/chat.js}"></script>
+</html>

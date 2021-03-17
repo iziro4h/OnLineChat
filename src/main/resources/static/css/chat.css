@@ -1,0 +1,160 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.chat-container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.chat-container > div {
+    border: 1px solid;
+}
+
+.chat-container .left {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.chat-container .left > div {
+    margin: .4em 1em;
+}
+
+.chat-container .left .title {
+    font-family: 华文宋体;
+    font-size: 1.2em;
+}
+
+.chat-container .left .msg-box {
+    height: 60vh;
+    border: 1px solid;
+    border-radius: .1em;
+    padding: .4em;
+    overflow: auto;
+}
+
+.chat-container .left .msg-box > div {
+
+    margin: .4em 0;
+}
+
+.chat-container .left .msg-box .msg-tips {
+    width: max-content;
+    height: max-content;
+    margin: .8em auto;
+    padding: .2em .8em;
+    font-size: .8em;
+    background: #EDEDED;
+    border-radius: .4em;
+}
+
+.chat-container .left .msg-box .msg-from-user {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.chat-container .left .msg-box .msg-from-me {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.chat-container .left .msg-input {
+    border: 1px solid;
+    border-radius: .1em;
+    height: 20vh;
+    padding: .8em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chat-container .left .msg-input .msg-input-text {
+    width: 99%;
+    height: 70%;
+    padding: .4em;
+    resize: none;
+    font-size: 1.2em;
+}
+
+.chat-container .left .msg-input .msg-input-send {
+    text-align: end;
+}
+
+.chat-container .left .msg-input .msg-input-send > a {
+    text-decoration: none;
+    color: #000000;
+    margin: .2em;
+    padding: .2em .8em;
+    background: mediumspringgreen;
+    border-radius: .2em;
+}
+
+.chat-container .right {
+    width: 16em;
+    text-align: center;
+}
+
+.chat-container .right .online-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: .2em .4em;
+}
+
+.chat-container .right .online-item > div:nth-child(2) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-container .right .online-item .green-point {
+    width: 1em;
+    height: 1em;
+    border-radius: .5em;
+    background: mediumspringgreen;
+}
+
+/*==========没有建立父子级关系的CSS==========*/
+
+.head-css {
+    width: 3em;
+    height: 3em;
+    border-radius: 1.5em;
+    background: mediumspringgreen;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.msg-user-code {
+    margin: .2em;
+}
+
+.msg-user-message {
+    width: max-content;
+    height: max-content;
+    min-width: 4em;
+    max-width: 32vw;
+    margin: .2em;
+    padding: .2em .4em;
+    border: 1px solid #EDEDED;
+    box-shadow: 0 0 3px 1px #EDEDED;
+    border-radius: .2em;
+}
+

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>请选择您的那啥</title>
+</head>
+<body>
+<form th:action="@{/chat/room}" method="post">
+    <label for="userShowName">输入一哈你要的用户名</label>
+    <input id="userShowName" name="userShowName" type="text" maxlength="18" placeholder="建议使用真名">
+    <input type="submit" value="进入聊天室">
+</form>
+</body>
+</html>

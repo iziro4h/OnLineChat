@@ -1,25 +1,10 @@
 server:
   port: 801
 
-
-
-
 #在这里配置的用户名和密码
 
 cus:
   users:
-    - user: kongwei
-      password: kongwei
+    - user: admin
+      password: passCode4Admin
       role: ADMIN
-    - user: liutao
-      password: liutao
-      role: ADMIN
-    - user: wangxuegang
-      password: wangxuegang
-      role: ADMIN
-    - user: wangxuegang
-      password: wangxuegang
-      role: ADMIN
-    - user: liuzilei
-      password: liuzilei
-      role: USER

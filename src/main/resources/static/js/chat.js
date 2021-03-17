@@ -1,12 +1,42 @@
 let myUserName
 
+let lastMessageTimer = new Date()
+
 function randomString(len) {
-    len = len || 32;
-    let $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';
-    let maxPos = $chars.length;
-    let str = '';
-    for (let i = 0; i < len; i++) str += $chars.charAt(Math.floor(Math.random() * maxPos));
-    return str;
+    len = len || 32
+    let $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678'
+    let maxPos = $chars.length
+    let str = ''
+    for (let i = 0; i < len; i++) str += $chars.charAt(Math.floor(Math.random() * maxPos))
+    return str
+}
+
+function dateFormat(date, fmt) {
+    let ret
+    let opt = {
+        "Y+": date.getFullYear().toString(),        // 年
+        "m+": (date.getMonth() + 1).toString(),     // 月
+        "d+": date.getDate().toString(),            // 日
+        "H+": date.getHours().toString(),           // 时
+        "M+": date.getMinutes().toString(),         // 分
+        "S+": date.getSeconds().toString()          // 秒
+    }
+    for (let k in opt) {
+        ret = new RegExp("(" + k + ")").exec(fmt)
+        if (ret) fmt = fmt.replace(ret[1], (ret[1].length == 1) ? (opt[k]) : (opt[k].padStart(ret[1].length, "0")))
+    }
+    return fmt
+}
+
+function doSth() {
+    //自动拉到盒子底部
+    let div = document.getElementById('message')
+    div.scrollTop = div.scrollHeight
+    //计算并判断是否显示时间
+    //这里从逻辑上来讲，可以将时间的显示放到客户端来执行,这里代表着 最后发送消息后的30秒过后，收到或者发送消息，需要重新显示时间
+    let now = new Date()
+    if (now - lastMessageTimer > 30 * 1000) $('#message').append('<div class="msg-tips">' + dateFormat(now, 'YYYY-mm-dd HH:MM:SS') + '</div>')
+    lastMessageTimer = now
 }
 
 let submitMessage = function () {
@@ -31,8 +61,7 @@ let submitMessage = function () {
                 '</div>')
             $('#' + id).text(message)
             $('#userMessage').val('')
-            let div = document.getElementById('message')
-            div.scrollTop = div.scrollHeight
+            doSth()
         },
         error: e => {
             console.error(e)
@@ -48,7 +77,7 @@ let messageHandler = function (msg) {
             obj = msg.data
             if (myUserName == obj.user) break
             let dao = 'in' == obj.dao ? '进入' : ('out' == obj.dao ? '退出' : '')
-            if (dao) $('#message').append('<div class="msg-tips"><span style="color: mediumspringgreen">' + obj.user + '</span>&nbsp;' + dao + '了群聊</div>')
+            if (dao) $('#message').append('<div class="msg-tips"><span style="color: mediumspringgreen">' + obj.user + '</span>&nbsp' + dao + '了群聊</div>')
             break
         case 'msg':
             obj = msg.data
@@ -76,17 +105,14 @@ let messageHandler = function (msg) {
             $('#now_online_per').html(html)
             break
     }
-    let div = document.getElementById('message')
-    div.scrollTop = div.scrollHeight
+    doSth()
 }
-
 
 let initMySocket = function (user) {
     let ws
     if (!ws) {
         try {
-            ws = new WebSocket('ws://121.199.22.66:801/chat/' + user);//实际服务器地址
-            // ws = new WebSocket('ws://localhost:801/chat/' + user);//本地测试连接服务器
+            ws = new WebSocket('ws://localhost:801/chat/' + user)//本地测试连接服务器
             ws.onopen = function (ev) {
                 // console.log('onopen', ev)
             }
